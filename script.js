@@ -28,7 +28,7 @@ function operate(num1,operator,num2) {
     else if(operator === "/") {
         answer = divide(num1,num2);
     }
-    return +answer.toFixed(5);
+    return +answer.toFixed(7);
 }
 
 
@@ -50,6 +50,17 @@ buttons.forEach((button) => {
             else {
                 solutionField.textContent += button.getAttribute('class');
             }
+        }
+
+        if(button.getAttribute('class') === 'decimal') {
+                if(solutionField.textContent === "" || allowMore === false){
+                    solutionField.textContent = 0 + '.';
+                    allowMore = true;
+                }
+                else if(!solutionField.textContent.includes(".")) {
+                solutionField.textContent += '.';
+                allowMore = true;
+                }
         }
 
         if(button.getAttribute('id') === "operator") {
