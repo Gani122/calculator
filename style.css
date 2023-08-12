@@ -10,9 +10,9 @@ html, body {
 }
 
 #calculator {
-    height: 500px;
+    height: 503px;
     width: 400px;
-    background-color: black;
+    background-color: rgb(19, 19, 19);
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -24,7 +24,6 @@ html, body {
 
 .display,
 button {
-    background-color: #a82727;
     border: solid 2px white;
 }
 
@@ -34,6 +33,8 @@ button {
     border-radius: 8px;
     display: flex;
     flex-direction: column;
+    margin-bottom: 3px;
+    background-color: rgb(250, 250, 241);
 }
 
 .fullOp,
@@ -46,24 +47,41 @@ button {
 }
 
 .fullOp {
-    height: 18px;
-    font-size: 16px;
+    height: 32px;
+    font-size: 20px;
 }
 
 .answer {
-    font-size: 42px;
+    font-size: 56px;
 }
 
 .row {
     display: flex;
     justify-content: space-between;
+    width: 100%;
     flex: 1;
 }
 
 button {
-    width: 83px;
-    height: 75px;
+    display: flex;
+    flex: 1 1 0;
+    justify-content: center;
+    align-items: center;
     border-radius: 5px;
-    font-size: 25px;
-    margin: 3px;
+    font-size: 24px;
+    margin: 4px;
+    background-color:rgb(243, 243, 209);
+    outline: none;
+}
+
+.clear {
+    background-color: rgb(117, 117, 107);
+}
+
+.delete {
+    background-color: rgb(240, 178, 178);
+}
+
+button:hover {
+    filter: brightness(85%);
 }

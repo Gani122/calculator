@@ -28,7 +28,7 @@ function operate(num1,operator,num2) {
     else if(operator === "/") {
         answer = divide(num1,num2);
     }
-    return answer;
+    return +answer.toFixed(5);
 }
 
 
@@ -85,7 +85,6 @@ buttons.forEach((button) => {
             solutionField.textContent = answer;
             allowMore = false;
         }
-
 
         if(button.getAttribute('class') === "clear") {
             solutionField.textContent = "0";
