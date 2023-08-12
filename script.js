@@ -36,7 +36,7 @@ function operate(num1,operator,num2) {
 const fullDisplay = document.querySelector('.fullOp');
 const solutionField = document.querySelector('.answer');
 
-let allowMore = true;
+let allowMore = false;
 
 const buttons = document.querySelectorAll('button');
 
@@ -53,7 +53,7 @@ buttons.forEach((button) => {
         }
 
         if(button.getAttribute('id') === "operator") {
-            if(solutionField.textContent !== "" && allowMore === true) {
+            if(solutionField.textContent !== "" && allowMore === true && !fullDisplay.textContent.endsWith('=')) {
                 fullDisplay.textContent += solutionField.textContent;
                 fullDisplay.textContent += " " + button.getAttribute('class') + " ";
                 allowMore = false;
@@ -75,8 +75,9 @@ buttons.forEach((button) => {
 
 
         if(button.getAttribute('class') === "clear") {
-            solutionField.textContent = "";
+            solutionField.textContent = "0";
             fullDisplay.textContent = "";
+            allowMore = false;
         }
 
         if(button.getAttribute('class') === "delete") {
