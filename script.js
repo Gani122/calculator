@@ -53,14 +53,27 @@ buttons.forEach((button) => {
         }
 
         if(button.getAttribute('id') === "operator") {
-            if(solutionField.textContent !== "" && allowMore === true && !fullDisplay.textContent.endsWith('=')) {
-                fullDisplay.textContent += solutionField.textContent;
-                fullDisplay.textContent += " " + button.getAttribute('class') + " ";
+            if(solutionField.textContent !== "" && allowMore && fullDisplay.textContent === "") {
+                fullDisplay.textContent += solutionField.textContent + " " + button.getAttribute('class') + " ";
                 allowMore = false;
             }
-            else if(fullDisplay.textContent.endsWith("=")) {
+            
+            if(fullDisplay.textContent.endsWith("=")) {
                 fullDisplay.textContent = solutionField.textContent + " " + button.getAttribute('class') + " ";
                 allowMore = false;
+            }
+
+            if(fullDisplay.textContent.endsWith(" ")) {
+                if(allowMore === false){
+                    fullDisplay.textContent = fullDisplay.textContent.slice(0, -2) + button.getAttribute('class') + " ";
+                }
+                else {
+                    let operation = fullDisplay.textContent.split(" ");
+                    let answer = operate(operation[0],operation[1],solutionField.textContent);
+                    solutionField.textContent = answer;
+                    fullDisplay.textContent = answer + " " + button.getAttribute('class') + " ";
+                    allowMore = false;
+                }
             }
         }
 
