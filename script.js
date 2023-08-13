@@ -28,7 +28,13 @@ function operate(num1,operator,num2) {
     else if(operator === "/") {
         answer = divide(num1,num2);
     }
-    return +answer.toFixed(7);
+
+    if (answer.toString().length > 11) {
+        return answer.toExponential(5);
+    }
+    else {
+        return +answer.toFixed(7);
+    }
 }
 
 
@@ -47,7 +53,7 @@ buttons.forEach((button) => {
                 solutionField.textContent = button.getAttribute('class');
                 allowMore = true;
             }
-            else {
+            else if(solutionField.textContent.length < 11) {
                 solutionField.textContent += button.getAttribute('class');
             }
         }
