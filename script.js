@@ -94,7 +94,10 @@ buttons.forEach((button) => {
             }
         }
 
-        if(button.getAttribute('class') === '=' && allowMore && fullDisplay.textContent !== "") {
+        if(button.getAttribute('class') === '=' 
+        && allowMore 
+        && fullDisplay.textContent !== ""
+        && !fullDisplay.textContent.includes("=")) {
             fullDisplay.textContent += solutionField.textContent;
             let operation = fullDisplay.textContent.split(" ");
             let answer = operate(operation[0],operation[1],operation[2]);
