@@ -70,8 +70,12 @@ button {
     border-radius: 5px;
     font-size: 24px;
     margin: 4px;
-    background-color:rgb(243, 243, 209);
+    background-color:rgb(243, 243, 219);
     outline: none;
+}
+
+#operator {
+    background-color: rgb(237, 188, 146);
 }
 
 .clear {
