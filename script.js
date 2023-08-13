@@ -1,16 +1,24 @@
 function add(num1,num2) {
-    return +num1 + +num2;
+    num1 = +num1;
+    num2 = +num2;
+    return num1 + num2;
 }
 
 function subtract(num1,num2) {
+    num1 = +num1;
+    num2 = +num2;
     return num1 - num2;
 }
 
 function multiply(num1,num2) {
+    num1 = +num1;
+    num2 = +num2;
     return num1 * num2;
 }
 
 function divide(num1,num2) {
+    num1 = +num1;
+    num2 = +num2;
     return num1 / num2;
 }
 
@@ -28,15 +36,20 @@ function operate(num1,operator,num2) {
     else if(operator === "/") {
         answer = divide(num1,num2);
     }
-    
-    let n = +answer.toString().length;
-    
-    if(n > 12) {
-        return +answer.toFixed(Math.abs(n - (Math.round(+answer).toString().length + 7)));
+
+    if(Number.isFinite(answer))
+    {
+        let n = +answer.toString().length;
+        if(n > 12) {
+            return +answer.toFixed(Math.abs(n - (Math.round(+answer).toString().length + 7)));
+        }
+        else {
+            return +answer.toFixed(7);
+        }
     }
     else {
-        return +answer.toFixed(7);
-   }
+        return "Can't do it"
+    }
 }
 
 
