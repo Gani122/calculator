@@ -1,16 +1,16 @@
-function add(num1,num2=0) {
+function add(num1,num2) {
     return +num1 + +num2;
 }
 
-function subtract(num1,num2=0) {
+function subtract(num1,num2) {
     return num1 - num2;
 }
 
-function multiply(num1,num2=1) {
+function multiply(num1,num2) {
     return num1 * num2;
 }
 
-function divide(num1,num2=1) {
+function divide(num1,num2) {
     return num1 / num2;
 }
 
@@ -28,13 +28,15 @@ function operate(num1,operator,num2) {
     else if(operator === "/") {
         answer = divide(num1,num2);
     }
-
-    if (answer.toString().length > 11) {
-        return answer.toExponential(5);
+    
+    let n = +answer.toString().length;
+    
+    if(n > 12) {
+        return +answer.toFixed(Math.abs(n - (Math.round(+answer).toString().length + 7)));
     }
     else {
         return +answer.toFixed(7);
-    }
+   }
 }
 
 
@@ -43,6 +45,8 @@ const fullDisplay = document.querySelector('.fullOp');
 const solutionField = document.querySelector('.answer');
 
 let allowMore = false;
+let operation;
+let answer;
 
 const buttons = document.querySelectorAll('button');
 
@@ -53,7 +57,7 @@ buttons.forEach((button) => {
                 solutionField.textContent = button.getAttribute('class');
                 allowMore = true;
             }
-            else if(solutionField.textContent.length < 11) {
+            else if(solutionField.textContent.length < 10) {
                 solutionField.textContent += button.getAttribute('class');
             }
         }
@@ -78,6 +82,7 @@ buttons.forEach((button) => {
             if(fullDisplay.textContent.endsWith("=")) {
                 fullDisplay.textContent = solutionField.textContent + " " + button.getAttribute('class') + " ";
                 allowMore = false;
+                answer = 0;
             }
 
             if(fullDisplay.textContent.endsWith(" ")) {
@@ -85,8 +90,8 @@ buttons.forEach((button) => {
                     fullDisplay.textContent = fullDisplay.textContent.slice(0, -2) + button.getAttribute('class') + " ";
                 }
                 else {
-                    let operation = fullDisplay.textContent.split(" ");
-                    let answer = operate(operation[0],operation[1],solutionField.textContent);
+                    operation = fullDisplay.textContent.split(" ");
+                    answer = operate(operation[0],operation[1],solutionField.textContent);
                     solutionField.textContent = answer;
                     fullDisplay.textContent = answer + " " + button.getAttribute('class') + " ";
                     allowMore = false;
@@ -99,8 +104,8 @@ buttons.forEach((button) => {
         && fullDisplay.textContent !== ""
         && !fullDisplay.textContent.includes("=")) {
             fullDisplay.textContent += solutionField.textContent;
-            let operation = fullDisplay.textContent.split(" ");
-            let answer = operate(operation[0],operation[1],operation[2]);
+            operation = fullDisplay.textContent.split(" ");
+            answer = operate(operation[0],operation[1],operation[2]);
             fullDisplay.textContent += " =";
             solutionField.textContent = answer;
             allowMore = false;
