@@ -40,8 +40,12 @@ function operate(num1,operator,num2) {
     if(Number.isFinite(answer))
     {
         let n = +answer.toString().length;
+        let limit = n - (Math.round(+answer).toString().length + 7);
+        if (limit < 0) {
+            limit = 0;
+        }
         if(n > 12) {
-            return +answer.toFixed(Math.abs(n - (Math.round(+answer).toString().length + 7)));
+            return +answer.toFixed(limit);
         }
         else {
             return +answer.toFixed(7);
